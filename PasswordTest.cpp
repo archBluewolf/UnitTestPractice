@@ -40,3 +40,21 @@ TEST(PasswordTest, mixed_case_password)
 	Password my_password;
 	ASSERT_TRUE(my_password.has_mixed_case("aB"));
 }
+
+TEST(PasswordTest, no_mixed_case_password)
+{
+	Password my_password;
+	ASSERT_FALSE(my_password.has_mixed_case("AB"));
+}
+
+TEST(PasswordTest, mixed_case_only_special_chars_password)
+{
+	Password my_password;
+	ASSERT_FALSE(my_password.has_mixed_case("#2"));
+}
+
+TEST(PasswordTest, mixed_case_with_special_chars_password)
+{
+	Password my_password;
+	ASSERT_TRUE(my_password.has_mixed_case("d#2KLa"));
+}
