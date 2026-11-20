@@ -35,6 +35,20 @@ TEST(PasswordTest, no_password_leading)
 	ASSERT_EQ(0, actual);
 }
 
+TEST(PasswordTest, only_same_letter_leading)
+{
+	Password my_password;
+	int actual = my_password.count_leading_characters("aaaaaaaa");
+	ASSERT_EQ(8, actual);
+}
+
+TEST(PasswordTest, special_leading_password)
+{
+	Password my_password;
+	int actual = my_password.count_leading_characters("$$$$$$!@");
+	ASSERT_EQ(6, actual);
+}
+
 TEST(PasswordTest, mixed_case_password)
 {
 	Password my_password;
@@ -57,4 +71,10 @@ TEST(PasswordTest, mixed_case_with_special_chars_password)
 {
 	Password my_password;
 	ASSERT_TRUE(my_password.has_mixed_case("d#2KLa"));
+}
+
+TEST(Password, no_char_mixed)
+{
+	Password my_password;
+	ASSERT_FALSE(my_password.has_mixed_case(""));
 }
